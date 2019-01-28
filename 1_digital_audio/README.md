@@ -2,7 +2,7 @@
 This contains the resources for my [talk on digital audio](). Check in the scripts directory to find scripts for generating the plots and audio examples. 
 
 ## Try it yourself
-You can run the same tests I show in my presentation or in my [blogpost]() on your own audio files.
+You can run the same tests I show in my presentation or in my [blogpost](https://www.christiansteinmetz.com/tutorial-blog/2019/1/22/digital-audio) on your own audio files.
 
 To do so you need to first get an audio file stored as a .wav file at 16 bit 44.1 kHz. If you attempt to use any other kind of file the examples will not work correctly (even if you do not receive any error messages.)
 
