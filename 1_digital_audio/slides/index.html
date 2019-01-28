@@ -1,0 +1,313 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/minimal.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- LaTeX support - Woo! -->
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<div class="title">
+						<h1 style="margin: 75px 0 0 0;">Digital Audio</h1>
+						<h5 style="margin: 0 0 0 0;"> The mystery behind sampling and reconstruction</h5>
+						<h5 style="margin: 100px 0 0 0;">Spring 2019 - Audio Tech Talk Series</h5>
+						<h6 style="margin: 5px 0 0 0;">January 22, 2019<h6>
+					</div>
+				</section>
+				<section>
+					<section>
+						<div class="divider_h1">
+							<h1>What is audio?</h1>
+						</div>
+					</section>
+					<section>
+						<img src="static/img/audio_wave.gif" alt="audio_wave" style="width:95%;">
+					</section>
+					<section>
+						<h2>Analog Audio</h2>
+						<img src="static/img/analog_plot.svg" alt="analog" style="width:60%;">
+					</section>
+					<section>
+						<h2>Digital Audio</h2>
+						<img src="static/img/stairstep_plot.svg" alt="stairsteps" style="width:60%;">
+					</section>
+					<section>
+						<img src="static/img/stem_plot.svg" alt="stem" style="width:60%;">
+					</section>
+					<section>
+							<h2>Sampling Theorem</h2>
+							<div class="row">
+								<div class="column">
+									<img src="static/img/analog_plot.svg" alt="analog" style="width:90%;">
+								</div>
+								<div class="column">
+									<img src="static/img/stem_plot.svg" alt="stem" style="width:90%;">
+								</div>
+							</div>
+					</section>
+				</section>
+				<section>
+					<section>
+						<div class="divider_h1">
+							<h1>Sampling Theorem</h1>
+							<h4>A continuous time signal (analog) can be completely represented by its samples and can be recovered back 
+							   when the sampling frequency <b>\( f_s \)</b> is greater than or equal to the twice the highest frequency 
+							   component <b>\( f_m \)</b> of the signal.
+							   i.e.<br></h4>
+							   <h4 style="text-align: center"><b>\( f_s\geq2*f_m \)</b></h4>
+							
+						</div>		
+					</section>
+					<section>
+						<h2>Examples</h2>
+						<h3 style="text-align: center">
+							<ul>
+								<li>Human speech (100 Hz - 4,000 Hz)</li> 		<!-- fs =  8,000 Hz -->
+								<li>Music (20 Hz - 20,000 Hz)</li>				<!-- fs = 40,000 Hz -->
+								<li>Temperatue sensor (~0 Hz - 0.25 Hz)</li>	<!-- fs =    0.5 Hz -->
+							</ul>
+						</h3>
+					</section> 
+					<section>
+						<h2>Reconstruction</h2>
+						<h4 style="text-align: center">There is only ONE bandlimited signal that fits the sampled points.</h4>
+						<img src="static/img/reconstruction.gif" alt="reconstruction" style="width:90%;">
+					</section>
+					<section>
+						<img src="static/img/reconstruction2.gif" alt="reconstruction2" style="width:90%;">
+					</section>
+					<section>
+						<h2>Caveats</h1>
+						<h3 style="text-align: center">
+							<ul>
+								<li>Sampled signal MUST be bandlimited -> <b>Aliasing</b></li> 	
+								<li>Finite bit depth (e.g. 16 bits)    -> <b>Quantization noise</b></li>
+							</ul>
+						</h3>
+					</section>
+				</section>
+				<section>
+					<section>
+						<div class="divider_h1">
+							<h1>Pulse Code Modulation (PCM)</h1>
+						</div>		
+					</section>
+					<section>
+						<h2>Sampling Rate and Bit Depth</h2>
+						<img src="static/img/stem_plot.svg" alt="stem" style="width:50%;">
+						<h3 class="fragment fade-in" style="text-align: center"> Bit depth = number of discrete levels -> <b>Dynamic range</b></h3>
+						<h3 class="fragment fade-in" style="text-align: center"> Sampling rate = number samples per second -> <b>Bandwidth</b></h3>
+					</section>
+					<section>
+						<h2>Sampling Rate</h2>
+						<audio controls>
+							<source src=static/audio/frederik-magle_16bit_44_1kHz.wav type=audio/wav>
+						</audio> 
+						<p>\(f_s = 44.1 \) kHz -> \( f_m = 22.05 \) kHz</p>
+						<audio controls>
+							<source src=static/audio/frederik-magle_16bit_22_05kHz.wav type=audio/wav>
+						</audio> 
+						<p>\( f_s = 22.05 \) kHz -> \( f_m = 11.025 \) kHz</p>
+						<audio controls>
+							<source src=static/audio/frederik-magle_16bit_11_025kHz.wav type=audio/wav>
+						</audio> 
+						<p>\( f_s = 11.025 \) kHz -> \( f_m = 5.5125 \) kHz</p>
+					</section>
+					<section>
+						<h2>Aliasing</h2>
+						<img src="static/img/aliasing_sines.svg" alt="aliasing_sines" style="width:80%;">					
+					</section>
+					<section>
+						<h2>Anti-Aliasing Filters</h2>
+						<img src="static/img/aa_filters.svg" alt="aa_filters" style="width:60%;">					
+					</section>
+					<section>
+						<div class="row">
+							<div class="column">
+								<img src="static/img/1k+8k_sine_16bit_44_1kHz.png" alt="mix" style="width:80%;">	
+								<audio controls>
+									<source src=static/audio/1k+8k_sine_16bit_44_1kHz.wav type=audio/wav>
+								</audio> 
+								<p>1 kHz + 8 kHz @ 16bit 44.1 kHz</p>
+							</div>
+							<div class="column">				
+								<img src="static/img/1k+8k_sine_16bit_11_025kHz.png" alt="mix" style="width:80%;">				
+								<audio controls>
+									<source src=static/audio/1k+8k_sine_16bit_11_025kHz.wav type=audio/wav>
+								</audio> 
+								<p>1 kHz + 8 kHz @ 16bit 11.025 kHz</p>
+							</div>
+							<div class="column">		
+								<img src="static/img/1k+8k_sine_16bit_11_025kHz_no_aa.png" alt="mix" style="width:80%;">		
+								<audio controls>
+									<source src=static/audio/1k+8k_sine_16bit_11_025kHz_no_aa.wav type=audio/wav>
+								</audio> 
+								<p>1 kHz + 8 kHz @ 16bit 11.025 kHz (No Anti-Aliasing filter)</p>										
+							</div>
+						</div>
+					</section>
+					<section>
+						<div class="row">
+							<div class="column">
+								<audio controls>
+									<source src=static/audio/frederik-magle_16bit_22_05kHz.wav type=audio/wav>
+								</audio> 
+								<p>\(f_s = 22.05 \) kHz -> \( f_m = 11.025 \) kHz</p>
+							</div>
+							<div class="column">
+								<audio controls>
+									<source src=static/audio/frederik-magle_16bit_22_05kHz_no_aa.wav type=audio/wav>
+								</audio> 
+								<p>\( f_s = 22.05 \) kHz -> \( f_m = 11.025 \) kHz (no anti-aliasing filter) </p>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h2>Bit Depth</h2>
+						<div class="row">
+							<div class="column">
+								<audio controls>
+									<source src=static/audio/frederik-magle_16bit_44_1kHz.wav type=audio/wav>
+								</audio> 
+								<p>16 bit -> 96 dB </p>
+								<audio controls>
+									<source src=static/audio/frederik-magle_8bit_44_1kHz.wav type=audio/wav>
+								</audio> 
+								<p>8 bit -> 48 dB</p>
+							</div>
+							<div class="column">
+								<audio controls>
+									<source src=static/audio/frederik-magle_16bit_to_8bit_diff.wav type=audio/wav>
+								</audio> 
+								<p>Difference between 16 bit and 8 bit (with dither)</p>
+								<audio controls>
+									<source src=static/audio/frederik-magle_16bit_to_8bit_diff_no_dither.wav type=audio/wav>
+								</audio> 
+								<p>Difference between 16 bit and 8 bit (no dither)</p>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h2>Quantization Noise</h2>
+						<img src="static/img/quantization_noise.gif" alt="quantization_noise" style="width:90%;">
+					</section>
+					<section>
+						<h2>Dither</h2>
+						<audio controls>
+							<source src=static/audio/1k_sine_16bit_44_1kHz.wav type=audio/wav>
+						</audio> 
+						<p>1 kHz sine wave @ 16 bit 44.1 kHz</p>
+						<audio controls>
+							<source src=static/audio/1k_sine_8bit_44_1kHz.wav type=audio/wav>
+						</audio> 
+						<p>1 kHz sine wave @ 8 bit 44.1 kHz (with dither)</p>
+						<audio controls>
+							<source src=static/audio/1k_sine_8bit_44_1kHz_no_dither.wav type=audio/wav>
+						</audio> 
+						<p>1 kHz sine wave @ 8 bit 44.1 kHz (no dither)</p>
+					</section>
+					<section>
+						<h2>Analog comparison</h2>
+						<table style="width:80%">
+							<tr>
+								<th>Format</th>
+								<th>Dynamic range</th> 
+								<th>Effective Bit Depth</th>
+							</tr>
+							<tr>
+								<td>Cassette</td>
+								<td>40 dB</td> 
+								<td>6 bits</td>
+							</tr>
+							<tr>
+								<td>Vinyl</td>
+								<td>60 dB</td> 
+								<td>10 bits</td>
+							</tr>
+							<tr>
+								<td>Reel-to-Reel</td>
+								<td>80 dB</td> 
+								<td>13 bits</td>
+							</tr>
+							<tr>
+								<td>CD</td>
+								<td>96 dB</td> 
+								<td>16 bits</td>
+							</tr>
+							<tr>
+								<td>HD Audio</td>
+								<td>144 dB</td> 
+								<td>24 bits</td>
+							</tr>
+						</table>
+						<br>
+						<h5 style="text-align: center">* These are estimates -> analog hardware performance varies</h6>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h1 style="text-align: center">Further Reading</h1>
+						<h3 style="text-align: center">
+						<ul>
+							<li class="fragment fade-in">Sigma-Delta converter (PDM)</li>
+							<li class="fragment fade-in">Error-correction codes (EFM, Reed-Solomon, etc.)</li>
+							<li class="fragment fade-in">Perceptual Audio Coding (MP3, AAC, etc.)</li>
+							<li class="fragment fade-in">Relevant ECE Courses</li>
+								<ul class="fragment fade-in">
+									<li>ECE 3300: Signals & Systems</li>
+									<li>ECE 4270: Communcation Systems</li>
+									<li>ECE 3170: Random Signal Analysis</li>
+									<li>ECE 4670: Digital Signal Processing</li>
+								</ul>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<div class="title">
+						<h5 style="margin: 10px 0 0 0;">Next Talk - February 5</h5>
+						<h1 style="margin: 25px 0 0 0;">Spectral Analysis</h1>
+						<h5 style="margin: 0 0 0 0;"> Decomposing audio with algorithms</h5>
+					</div>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
