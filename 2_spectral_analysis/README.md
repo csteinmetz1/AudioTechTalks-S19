@@ -1,5 +1,5 @@
 # Spectral Analysis
-This contains the resources for my [talk on spectral](). Check in the scripts directory to find scripts for generating the plots and audio examples. 
+This contains the resources for my [talk on spectral analysis](). Check in the scripts directory to find scripts for generating the plots and audio examples. 
 
 ## Try it yourself
 You can run the same tests I show in my presentation or in my [blogpost]() on your own audio files.
