@@ -9,7 +9,6 @@ import soundfile as sf 			# write audio files
 import matplotlib.pyplot as plt	# make plots
 from scipy import signal		# correlate function
 from scipy import fftpack		# fft functions
-from scipy.ndimage import interpolation
 
 output_dir = "audio"
 if not os.path.isdir(output_dir):
@@ -79,12 +78,15 @@ def pitch_shift():
 	ax2 = fig.add_subplot(2,1,2)
 
 	frame = piano[1*frame_size:1*frame_size+frame_size]
-	fft = fftpack.fft(frame)/frame_size
-	mag = np.abs(fft)
+	fft_full = np.fft.rfft(piano)
+	fft_frame = np.fft.rfft(frame)
+	mag = np.abs(fft_frame)/frame_size
 
-	shifted_fft = interpolation.shift(fft, 2, cval=0)
-	ifft = fftpack.ifft(shifted_fft)
-	sf.write(os.path.join("audio", "piano_shifted.wav"), ifft, 44100)
+	shift = 10
+	shifted_fft = np.roll(fft_full, shift)
+	shifted_fft[0:shift] = 0
+	ifft = np.fft.irfft(shifted_fft)
+	sf.write(os.path.join(output_dir, "piano_shifted.wav"), ifft, 44100)
 
 	k = np.arange(int(frame_size/2))
 	freqs = k * (fs/1024)

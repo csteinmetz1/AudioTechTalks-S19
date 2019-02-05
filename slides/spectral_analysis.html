@@ -4,13 +4,16 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Digital Audio</title>
+		<title>Spectral Analysis</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/minimal.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Styling for the slideshow element -->
+		<link rel="stylesheet" href="css/slideshow.css">
 
 		<!-- LaTeX support - Woo! -->
 		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
@@ -36,253 +39,316 @@
 					</div>
 				</section>
 				<section>
-					<section>
-						<img src="static/spectral_analysis/img/spectrum_analyzer.gif" alt="audio_wave" style="width:65%;">
-					</section>
-					<section>
-						<h2>Analog Audio</h2>
-						<img src="static/digital_audio/img/analog_plot.svg" alt="analog" style="width:60%;">
-					</section>
-					<section>
-						<h2>Digital Audio</h2>
-						<img src="static/digital_audio/img/stairstep_plot.svg" alt="stairsteps" style="width:60%;">
-					</section>
-					<section>
-						<img src="static/digital_audio/img/stem_plot.svg" alt="stem" style="width:60%;">
-					</section>
-					<section>
-							<h2>Sampling Theorem</h2>
-							<div class="row">
-								<div class="column">
-									<img src="static/digital_audio/img/analog_plot.svg" alt="analog" style="width:90%;">
-								</div>
-								<div class="column">
-									<img src="static/digital_audio/img/stem_plot.svg" alt="stem" style="width:90%;">
-								</div>
-							</div>
-					</section>
+					<img src="static/spectral_analysis/img/spectrum_analyzer.gif" alt="audio_wave" style="width:65%;">
+					<h3  style="text-align: center;" class='fragment fade-in'>Frequency</h3>
 				</section>
 				<section>
-					<section>
-						<div class="divider_h1">
-							<h1>Sampling Theorem</h1>
-							<h4>A continuous time signal (analog) can be completely represented by its samples and can be recovered back 
-							   when the sampling frequency <b>\( f_s \)</b> is greater than or equal to the twice the highest frequency 
-							   component <b>\( f_m \)</b> of the signal.
-							   i.e.<br></h4>
-							   <h4 style="text-align: center"><b>\( f_s\geq2*f_m \)</b></h4>
-							
-						</div>		
-					</section>
-					<section>
-						<h2>Examples</h2>
-						<h3 style="text-align: center">
-							<ul>
-								<li>Human speech (100 Hz - 4,000 Hz)</li> 		<!-- fs =  8,000 Hz -->
-								<li>Music (20 Hz - 20,000 Hz)</li>				<!-- fs = 40,000 Hz -->
-								<li>Temperatue sensor (~0 Hz - 0.25 Hz)</li>	<!-- fs =    0.5 Hz -->
+					<h3  style="text-align: center;">Time Domain -> Frequency domain</h3>
+					<img src="static/spectral_analysis/img/fft.gif" alt="audio_wave" style="width:65%;">
+				</section>
+				<section>
+					<h1 style="text-align: center;">Fourier Transform</h1>
+					<h3 style="text-align: center;" class='fragment fade-in'>But first we have to talk about correlation...</h3>
+				</section>
+				<section>
+					<h3  style="text-align: center;">440 Hz sine wave</h3>
+					<img src="static/spectral_analysis/img/440Hz_sine_wave.svg" alt="audio_wave" style="width:80%;">
+					<br>
+					<audio controls>
+						<source src=static/spectral_analysis/audio/a4_440Hz.wav type=audio/wav>
+					</audio> 
+				</section>
+				<section>
+					<h3  style="text-align: center;">Corrleation between 440 Hz and 200 Hz</h3>
+					<img src="static/spectral_analysis/img/slide_440Hz+200Hz.gif" alt="audio_wave" style="width:80%;">
+				</section>
+				<section>
+					<h3  style="text-align: center;">Corrleation between 440 Hz and 440 Hz</h3>
+					<img src="static/spectral_analysis/img/slide_440Hz+440Hz.gif" alt="audio_wave" style="width:80%;">
+				</section>
+				<section>
+					<a onclick="showSlides(1,1)"><p>start</p></a>
+					<div class="slideshow-container">
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_0.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_20.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_40.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_60.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_80.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_100.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_120.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_140.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_160.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_180.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_200.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_220.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_240.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_260.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_280.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_300.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_320.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_340.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_360.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_380.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_400.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_420.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_440.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_460.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_480.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_500.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_520.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_540.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_560.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_580.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_600.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_620.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_640.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_660.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_680.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_700.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_720.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_740.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_760.svg" style="width:75%"></div>
+						<div class="1-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_200.0Hz_corr_lag_780.svg" style="width:75%"></div>
+				
+						<div class="prev" >
+							<a onclick="plusSlides(-1,1)">&#10094;</a>
+						</div>
+						<div class="next" >
+							<a onclick="plusSlides(1,1)">&#10095;</a>
+						</div>
+					</div>
+				</section>
+				<section>
+					<a onclick="showSlides(1,2)"><p>start</p></a>
+					<div class="slideshow-container">
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_0.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_20.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_40.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_60.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_80.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_100.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_120.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_140.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_160.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_180.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_200.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_220.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_240.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_260.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_280.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_300.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_320.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_340.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_360.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_380.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_400.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_420.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_440.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_460.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_480.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_500.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_520.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_540.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_560.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_580.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_600.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_620.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_640.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_660.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_680.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_700.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_720.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_740.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_760.svg" style="width:75%"></div>
+						<div class="2-mySlides"><img src="static/spectral_analysis/img/ex/440Hz_440.0Hz_corr_lag_780.svg" style="width:75%"></div>
+				
+						<div class="prev" >
+							<a onclick="plusSlides(-1,2)">&#10094;</a>
+						</div>
+						<div class="next" >
+							<a onclick="plusSlides(1,2)">&#10095;</a>
+						</div>
+					</div>
+				</section>
+				<section>
+					<a onclick="showSlides(1,3)"><p>start</p></a>
+					<div class="slideshow-container">
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/0_440Hz_20_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/1_440Hz_40_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/2_440Hz_60_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/3_440Hz_80_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/4_440Hz_100_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/5_440Hz_120_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/6_440Hz_140_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/7_440Hz_160_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/8_440Hz_180_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/9_440Hz_200_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/10_440Hz_220_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/11_440Hz_240_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/12_440Hz_260_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/13_440Hz_280_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/14_440Hz_300_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/15_440Hz_320_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/16_440Hz_340_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/17_440Hz_360_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/18_440Hz_380_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/19_440Hz_400_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/20_440Hz_420_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/21_440Hz_440_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/22_440Hz_460_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/23_440Hz_480_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/24_440Hz_500_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/25_440Hz_520_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/26_440Hz_540_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/27_440Hz_560_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/28_440Hz_580_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/29_440Hz_600_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/30_440Hz_620_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/31_440Hz_640_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/32_440Hz_660_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/33_440Hz_680_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/34_440Hz_700_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/35_440Hz_720_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/36_440Hz_740_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/37_440Hz_760_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/38_440Hz_780_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/39_440Hz_800_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/40_440Hz_820_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/41_440Hz_840_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/42_440Hz_860_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/43_440Hz_880_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/44_440Hz_900_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/45_440Hz_920_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/46_440Hz_940_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/47_440Hz_960_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/48_440Hz_980_corr.svg" style="width:75%"></div>
+						<div class="3-mySlides"><img src="static/spectral_analysis/img/ft/49_440Hz_1000_corr.svg" style="width:75%"></div>
+						<div class="prev" >
+							<a onclick="plusSlides(-1,3)">&#10094;</a>
+						</div>
+						<div class="next" >
+							<a onclick="plusSlides(1,3)">&#10095;</a>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3  style="text-align: center;">How about a piano note?</h3>
+					<br>
+					<audio controls>
+						<source src=static/spectral_analysis/audio/piano-note.wav type=audio/wav>
+					</audio> 
+				</section>
+				<section>
+					<a onclick="showSlides(1,4)"><p>start</p></a>
+					<div class="slideshow-container">
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/0_piano_20_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/1_piano_40_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/2_piano_60_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/3_piano_80_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/4_piano_100_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/5_piano_120_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/6_piano_140_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/7_piano_160_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/8_piano_180_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/9_piano_200_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/10_piano_220_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/11_piano_240_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/12_piano_260_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/13_piano_280_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/14_piano_300_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/15_piano_320_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/16_piano_340_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/17_piano_360_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/18_piano_380_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/19_piano_400_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/20_piano_420_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/21_piano_440_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/22_piano_460_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/23_piano_480_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/24_piano_500_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/25_piano_520_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/26_piano_540_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/27_piano_560_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/28_piano_580_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/29_piano_600_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/30_piano_620_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/31_piano_640_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/32_piano_660_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/33_piano_680_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/34_piano_700_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/35_piano_720_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/36_piano_740_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/37_piano_760_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/38_piano_780_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/39_piano_800_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/40_piano_820_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/41_piano_840_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/42_piano_860_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/43_piano_880_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/44_piano_900_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/45_piano_920_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/46_piano_940_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/47_piano_960_corr.svg" style="width:75%"></div>
+						<div class="4-mySlides"><img src="static/spectral_analysis/img/piano/48_piano_980_corr.svg" style="width:75%"></div>
+						<div class="prev" >
+							<a onclick="plusSlides(-1,4)">&#10094;</a>
+						</div>
+						<div class="next" >
+							<a onclick="plusSlides(1,4)">&#10095;</a>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3 style="text-align: center">One more question?</h3>
+					<img src="static/spectral_analysis/img/ft/49_440Hz_1000_corr.svg" style="width:75%">
+				</section>
+				<section>
+					<h2 style="text-align: center">How can we use this?</h2>
+				</section>
+				<section>
+					<h2 style="text-align: center">Frequency Analysis & Correction</h2>
+					<img src="static/spectral_analysis/img/glm.jpg" style="width:75%">
+				</section>	
+				<section>
+					<h2 style="text-align: center">Pitch Shifting</h2>
+					<img src="static/spectral_analysis/img/autotune.png" style="width:75%">
+				</section>
+				<section>
+					<img src="static/spectral_analysis/img/shift_piano_fft.svg" style="width:75%">
+					<audio controls>
+						<source src=static/spectral_analysis/audio/piano-note.wav type=audio/wav>
+					</audio> 
+					<p>Original</p>
+					<audio controls>
+						<source src=static/spectral_analysis/audio/piano-note.wav type=audio/wav>
+					</audio> 
+					<p>Shifted</p>
+				</section>
+				<section>
+					<h2 style="text-align: center">Time Stretching</h2>
+					<img src="static/spectral_analysis/img/warp.jpg" style="width:90%">
+				</section>
+				<section>
+					<h1 style="text-align: center">Further Reading</h1>
+					<h3 style="text-align: center">
+					<ul>
+						<li class="fragment fade-in">Sigma-Delta converter (PDM)</li>
+						<li class="fragment fade-in">Error-correction codes (EFM, Reed-Solomon, etc.)</li>
+						<li class="fragment fade-in">Perceptual Audio Coding (MP3, AAC, etc.)</li>
+						<li class="fragment fade-in">Relevant ECE Courses</li>
+							<ul class="fragment fade-in">
+								<li>ECE 3300: Signals & Systems</li>
+								<li>ECE 4270: Communcation Systems</li>
+								<li>ECE 3170: Random Signal Analysis</li>
+								<li>ECE 4670: Digital Signal Processing</li>
 							</ul>
-						</h3>
-					</section> 
-					<section>
-						<h2>Reconstruction</h2>
-						<h4 style="text-align: center">There is only ONE bandlimited signal that fits the sampled points.</h4>
-						<img src="static/digital_audio/img/reconstruction.gif" alt="reconstruction" style="width:90%;">
-					</section>
-					<section>
-						<img src="static/digital_audio/img/reconstruction2.gif" alt="reconstruction2" style="width:90%;">
-					</section>
-					<section>
-						<h2>Caveats</h1>
-						<h3 style="text-align: center">
-							<ul>
-								<li>Sampled signal MUST be bandlimited -> <b>Aliasing</b></li> 	
-								<li>Finite bit depth (e.g. 16 bits)    -> <b>Quantization noise</b></li>
-							</ul>
-						</h3>
-					</section>
-				</section>
-				<section>
-					<section>
-						<div class="divider_h1">
-							<h1>Pulse Code Modulation (PCM)</h1>
-						</div>		
-					</section>
-					<section>
-						<h2>Sampling Rate and Bit Depth</h2>
-						<img src="static/digital_audio/img/stem_plot.svg" alt="stem" style="width:50%;">
-						<h3 class="fragment fade-in" style="text-align: center"> Bit depth = number of discrete levels -> <b>Dynamic range</b></h3>
-						<h3 class="fragment fade-in" style="text-align: center"> Sampling rate = number samples per second -> <b>Bandwidth</b></h3>
-					</section>
-					<section>
-						<h2>Sampling Rate</h2>
-						<audio controls>
-							<source src=static/digital_audio/audio/frederik-magle_16bit_44_1kHz.wav type=audio/wav>
-						</audio> 
-						<p>\(f_s = 44.1 \) kHz -> \( f_m = 22.05 \) kHz</p>
-						<audio controls>
-							<source src=static/digital_audio/audio/frederik-magle_16bit_22_05kHz.wav type=audio/wav>
-						</audio> 
-						<p>\( f_s = 22.05 \) kHz -> \( f_m = 11.025 \) kHz</p>
-						<audio controls>
-							<source src=static/digital_audio/audio/frederik-magle_16bit_11_025kHz.wav type=audio/wav>
-						</audio> 
-						<p>\( f_s = 11.025 \) kHz -> \( f_m = 5.5125 \) kHz</p>
-					</section>
-					<section>
-						<h2>Aliasing</h2>
-						<img src="static/digital_audio/img/aliasing_sines.svg" alt="aliasing_sines" style="width:80%;">					
-					</section>
-					<section>
-						<h2>Anti-Aliasing Filters</h2>
-						<img src="static/digital_audio/img/aa_filters.svg" alt="aa_filters" style="width:60%;">					
-					</section>
-					<section>
-						<div class="row">
-							<div class="column">
-								<img src="static/digital_audio/img/1k+8k_sine_16bit_44_1kHz.png" alt="mix" style="width:80%;">	
-								<audio controls>
-									<source src=static/digital_audio/audio/1k+8k_sine_16bit_44_1kHz.wav type=audio/wav>
-								</audio> 
-								<p>1 kHz + 8 kHz @ 16bit 44.1 kHz</p>
-							</div>
-							<div class="column">				
-								<img src="static/digital_audio/img/1k+8k_sine_16bit_11_025kHz.png" alt="mix" style="width:80%;">				
-								<audio controls>
-									<source src=static/digital_audio/audio/1k+8k_sine_16bit_11_025kHz.wav type=audio/wav>
-								</audio> 
-								<p>1 kHz + 8 kHz @ 16bit 11.025 kHz</p>
-							</div>
-							<div class="column">		
-								<img src="static/digital_audio/img/1k+8k_sine_16bit_11_025kHz_no_aa.png" alt="mix" style="width:80%;">		
-								<audio controls>
-									<source src=static/digital_audio/audio/1k+8k_sine_16bit_11_025kHz_no_aa.wav type=audio/wav>
-								</audio> 
-								<p>1 kHz + 8 kHz @ 16bit 11.025 kHz (No Anti-Aliasing filter)</p>										
-							</div>
-						</div>
-					</section>
-					<section>
-						<div class="row">
-							<div class="column">
-								<audio controls>
-									<source src=static/digital_audio/audio/frederik-magle_16bit_22_05kHz.wav type=audio/wav>
-								</audio> 
-								<p>\(f_s = 22.05 \) kHz -> \( f_m = 11.025 \) kHz</p>
-							</div>
-							<div class="column">
-								<audio controls>
-									<source src=static/digital_audio/audio/frederik-magle_16bit_22_05kHz_no_aa.wav type=audio/wav>
-								</audio> 
-								<p>\( f_s = 22.05 \) kHz -> \( f_m = 11.025 \) kHz (no anti-aliasing filter) </p>
-							</div>
-						</div>
-					</section>
-					<section>
-						<h2>Bit Depth</h2>
-						<div class="row">
-							<div class="column">
-								<audio controls>
-									<source src=static/digital_audio/audio/frederik-magle_16bit_44_1kHz.wav type=audio/wav>
-								</audio> 
-								<p>16 bit -> 96 dB </p>
-								<audio controls>
-									<source src=static/digital_audio/audio/frederik-magle_8bit_44_1kHz.wav type=audio/wav>
-								</audio> 
-								<p>8 bit -> 48 dB</p>
-							</div>
-							<div class="column">
-								<audio controls>
-									<source src=static/digital_audio/audio/frederik-magle_16bit_to_8bit_diff.wav type=audio/wav>
-								</audio> 
-								<p>Difference between 16 bit and 8 bit (with dither)</p>
-								<audio controls>
-									<source src=static/digital_audio/audio/frederik-magle_16bit_to_8bit_diff_no_dither.wav type=audio/wav>
-								</audio> 
-								<p>Difference between 16 bit and 8 bit (no dither)</p>
-							</div>
-						</div>
-					</section>
-					<section>
-						<h2>Quantization Noise</h2>
-						<img src="static/digital_audio/img/quantization_noise.gif" alt="quantization_noise" style="width:90%;">
-					</section>
-					<section>
-						<h2>Dither</h2>
-						<audio controls>
-							<source src=static/digital_audio/audio/1k_sine_16bit_44_1kHz.wav type=audio/wav>
-						</audio> 
-						<p>1 kHz sine wave @ 16 bit 44.1 kHz</p>
-						<audio controls>
-							<source src=static/digital_audio/audio/1k_sine_8bit_44_1kHz.wav type=audio/wav>
-						</audio> 
-						<p>1 kHz sine wave @ 8 bit 44.1 kHz (with dither)</p>
-						<audio controls>
-							<source src=static/digital_audio/audio/1k_sine_8bit_44_1kHz_no_dither.wav type=audio/wav>
-						</audio> 
-						<p>1 kHz sine wave @ 8 bit 44.1 kHz (no dither)</p>
-					</section>
-					<section>
-						<h2>Analog comparison</h2>
-						<table style="width:80%">
-							<tr>
-								<th>Format</th>
-								<th>Dynamic range</th> 
-								<th>Effective Bit Depth</th>
-							</tr>
-							<tr>
-								<td>Cassette</td>
-								<td>40 dB</td> 
-								<td>6 bits</td>
-							</tr>
-							<tr>
-								<td>Vinyl</td>
-								<td>60 dB</td> 
-								<td>10 bits</td>
-							</tr>
-							<tr>
-								<td>Reel-to-Reel</td>
-								<td>80 dB</td> 
-								<td>13 bits</td>
-							</tr>
-							<tr>
-								<td>CD</td>
-								<td>96 dB</td> 
-								<td>16 bits</td>
-							</tr>
-							<tr>
-								<td>HD Audio</td>
-								<td>144 dB</td> 
-								<td>24 bits</td>
-							</tr>
-						</table>
-						<br>
-						<h5 style="text-align: center">* These are estimates -> analog hardware performance varies</h6>
-					</section>
-				</section>
-				<section>
-					<section>
-						<h1 style="text-align: center">Further Reading</h1>
-						<h3 style="text-align: center">
-						<ul>
-							<li class="fragment fade-in">Sigma-Delta converter (PDM)</li>
-							<li class="fragment fade-in">Error-correction codes (EFM, Reed-Solomon, etc.)</li>
-							<li class="fragment fade-in">Perceptual Audio Coding (MP3, AAC, etc.)</li>
-							<li class="fragment fade-in">Relevant ECE Courses</li>
-								<ul class="fragment fade-in">
-									<li>ECE 3300: Signals & Systems</li>
-									<li>ECE 4270: Communcation Systems</li>
-									<li>ECE 3170: Random Signal Analysis</li>
-									<li>ECE 4670: Digital Signal Processing</li>
-								</ul>
-						</ul>
-					</section>
+					</ul>
 				</section>
 				<section>
 					<div class="title">
-						<h5 style="margin: 10px 0 0 0;">Next Talk - February 5</h5>
-						<h1 style="margin: 25px 0 0 0;">Spectral Analysis</h1>
-						<h5 style="margin: 0 0 0 0;"> Decomposing audio with algorithms</h5>
+						<h5 style="margin: 10px 0 0 0;">Next Talk - February 19</h5>
+						<h1 style="margin: 25px 0 0 0;">Audio Myths</h1>
+						<h5 style="margin: 0 0 0 0;"> Dispelling common misconceptions and misleading truths</h5>
 					</div>
 				</section>
 			</div>
@@ -290,6 +356,7 @@
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.js"></script>
+		<script src="js/slideshow.js"></script>
 
 		<script>
 			// More info about config & dependencies:
