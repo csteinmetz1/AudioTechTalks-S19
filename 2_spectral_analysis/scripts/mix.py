@@ -77,16 +77,25 @@ def pitch_shift():
 	ax1 = fig.add_subplot(2,1,1)
 	ax2 = fig.add_subplot(2,1,2)
 
-	frame = piano[1*frame_size:1*frame_size+frame_size]
-	fft_full = np.fft.rfft(piano)
-	fft_frame = np.fft.rfft(frame)
-	mag = np.abs(fft_frame)/frame_size
+	#fft_full = np.fft.rfft(piano)
 
-	shift = 10
-	shifted_fft = np.roll(fft_full, shift)
-	shifted_fft[0:shift] = 0
-	ifft = np.fft.irfft(shifted_fft)
-	sf.write(os.path.join(output_dir, "piano_shifted.wav"), ifft, 44100)
+	shift = 1
+	output_frames = []
+	for idx in range(n_frames):
+		frame = piano[idx*frame_size:idx*frame_size+frame_size]
+		fft_frame = np.fft.rfft(frame)
+		shifted_fft = np.roll(fft_frame, shift)
+		shifted_fft[0:shift] = 0
+		ifft = np.fft.irfft(shifted_fft)
+		output_frames.append(ifft)
+
+	mag = np.abs(fft_frame)/frame_size
+	shift_mag = np.abs(shifted_fft)/frame_size
+
+	output = np.concatenate(output_frames)
+	print(output.shape)
+
+	sf.write(os.path.join(output_dir, "piano-shifted.wav"), output, 44100)
 
 	k = np.arange(int(frame_size/2))
 	freqs = k * (fs/1024)
@@ -95,7 +104,7 @@ def pitch_shift():
 	ax2.set_ylim(0.00001, 0.2)
 	ax2.set_xlim(20, 22050)
 
-	ax2.loglog(freqs+84, mag[:int(frame_size/2)], color='firebrick')
+	ax2.loglog(freqs, shift_mag[:int(frame_size/2)], color='firebrick')
 	ax2.set_ylim(0.00001, 0.2)
 	ax2.set_xlim(20, 22050)
 	sns.despine()
@@ -104,11 +113,11 @@ def pitch_shift():
 	ax2.clear()
 	
 	# turn into png ...
-	svg_frames = glob.glob("../figs/corr/fft/svg/*.svg")
-	png_dir = "../figs/corr/fft/png"
-	for frame in svg_frames:
-		frame_name = os.path.basename(frame).replace(".svg", ".png")
-		cairosvg.svg2png(url=frame, write_to=os.path.join(png_dir, frame_name))
+	#svg_frames = glob.glob("../figs/corr/fft/svg/*.svg")
+	#png_dir = "../figs/corr/fft/png"
+	#for frame in svg_frames:
+	#   frame_name = os.path.basename(frame).replace(".svg", ".png")
+	#	cairosvg.svg2png(url=frame, write_to=os.path.join(png_dir, frame_name))
 
 def td_to_fd():
 	print("Time domain to frequency domain example...")
