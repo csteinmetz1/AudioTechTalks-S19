@@ -106,11 +106,18 @@
 						<img src="static/audio_myths/img/high_res_comparison.png" style="width:80%">
 					</section>
 					<section>
+						<h2>Digital audio does not contain stairsteps</h2>
+						<img src="static/digital_audio/img/stairstep_plot.svg" style="width:70%">
+					</section>
+					<section>
+						<img src="static/digital_audio/img/stem_plot.svg" style="width:70%">
+					</section>
+					<section>
 						<h2>Criticism</h2>
 						<ul>
-							<li>"If they [the music business] cared about sound quality in the first place, they would make all of the releases sound great in every format they sell: MP3, FLAC, CD, iTunes, or LP." — cnet</li>
-							<li>"Impractical overkill that nobody can afford" — Gizmodo</li>
-							<li>"A solution to a problem that doesn't exist, a business model based on willful ignorance and scamming people." — Xiph.org</li>
+							<li><h3>"If they [the music business] cared about sound quality in the first place, they would make all of the releases sound great in every format they sell: MP3, FLAC, CD, iTunes, or LP." — cnet</h3></li>
+							<li><h3>"Impractical overkill that nobody can afford" — Gizmodo</h3></li>
+							<li><h3>"A solution to a problem that doesn't exist, a business model based on willful ignorance and scamming people." — Xiph.org</h3></li>
 						</ul>
 					</section>
 					<section>
@@ -129,9 +136,46 @@
 					</section>
 					<section>
 						<h2>What is mp3 audio?</h2>
-						<h3 style="text-align: center;">MP3 compression works by reducing (or approximating) the accuracy of certain components of sound that are considered 
-							to be beyond the hearing capabilities of most humans. 
+						<h3 style="text-align: center;">MP3 compression works by reducing (or approximating) the accuracy of 
+							certain components of sound that are considered to be beyond the hearing capabilities of most humans. 
 							This method is commonly referred to as perceptual coding or as psychoacoustic modeling.</h3>
+					</section>
+					<section>
+						<h2>Temporal Masking</h2>
+						<img src="static/audio_myths/img/temporal-masking.gif" style="width:60%">
+					</section>
+					<section>
+						<h2>Listening Examples</h2>
+						<div class="row">
+							<div class="column">
+								<audio controls>
+									<source src=static/audio_myths/audio/frederik-magle.wav type=audio/wav>
+								</audio> 
+								<p>uncompressed WAVE - 2.5 MB </p>		
+							</div>
+							<div class="column">
+								<audio controls>
+									<source src=static/audio_myths/audio/frederik-magle_320kbps.mp3 type=audio/mp3>
+								</audio> 
+								<p>320 kbps MP3 - 563 KB [x4.4 factor] - Fs = 44.1 kHz</p>
+								<audio controls>
+									<source src=static/audio_myths/audio/frederik-magle_128kbps.mp3 type=audio/mp3>
+								</audio> 
+								<p>128 kbps MP3 - 225 KB [x11.1 factor] - Fs = 44.1 kHz</p>
+								<audio controls>
+									<source src=static/audio_myths/audio/frederik-magle_96kbps.mp3 type=audio/mp3>
+								</audio> 
+								<p>96 kbps MP3 - 169 KB [x14.8 factor] - Fs = 44.1 kHz</p>
+								<audio controls>
+									<source src=static/audio_myths/audio/frederik-magle_16kbps.mp3 type=audio/mp3>
+								</audio> 
+								<p>16 kbps MP3 - 29 KB [x86.2 factor] - Fs = 8 kHz</p>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h2>MP3 audio sounds bad</h2>
+						<h1 style="text-align: center;" class="fragment fade-up"> Mostly false </h1>
 					</section>
 				</section>
 				<!-- Myth 4 -->
@@ -147,14 +191,56 @@
 				<!-- Myth 5 -->
 				<section>
 					<section>
-						<img src="static/audio_myths/img/expensive_cable.jpg" style="width:50%">
+						<img src="static/audio_myths/img/expensive_cable1.jpg" style="width:45%">
 						<h2>Cables improve sound quality</h2>
 					</section>
 					<section>
-						
+						<h2>How expensive could cables be?</h2>
+						<h1 style="text-align: center;" class="fragment fade-up"> Very </h1>						
+					</section>
+					<section>
+						<img src="static/audio_myths/img/silver_dragon.jpg" style="width:50%">
+						<p> Moon Audio - Sliver Dragon XLR interconnect</p>
+						<h2 style="text-align: center;" class="fragment fade-up">$500</h2>
+					</section>
+					<section>
+						<img src="static/audio_myths/img/cardas-clear-beyond.jpg" style="width:50%">
+						<p> Cardas - Clear Beyond Speaker Cable</p>
+						<h2 style="text-align: center;" class="fragment fade-up">$6,840</h2>
+					</section>
+					<section>
+						<img src="static/audio_myths/img/siltech_cables.jpg" style="width:50%">
+						<p> Siltech Cables - Emperor Double Crown Speaker Cable</p>
+						<h2 style="text-align: center;" class="fragment fade-up">$45,000</h2>
+					</section>
+					<section>
+						<img src="static/audio_myths/img/coathanger.jpg" style="width:70%">
+					</section>
+					<section>
+						<h1 style="text-align: center;">Transmission Line Theory</h1>
+					</section>
+					<section>
+						<h2>'Short' vs. 'long' connections</h2>
+						<h3 style="text-align: center;" class="fragment fade-up"> Speed of light - 299,792,458 m/s</h3>
+						<h3 style="text-align: center;" class="fragment fade-up"> 100 ft. (~30.5 m) audio cable - 101 ns propagation delay</h3>
+						<h3 style="text-align: center;" class="fragment fade-up"> 20 kHz -> T = 50 μs and ~10,000 m wavelength in copper</h3>
+						<h3 style="text-align: center;" class="fragment fade-up">"Cables connecting an audio amplifier to speakers would have 
+							to be over <b>1.55 miles</b> in length before line reflections would significantly impact a 20 kHz audio signal"</h3>
+					</section>
+					<section>
+						<h2 style="text-align: center;">What matters in a cable?</h2>
+						<ul>
+							<li class="fragment fade-up"><h3>Connectors - well made for good contacts</h3> </li>
+							<li class="fragment fade-up"><h3>Cable insulation - durable</h3> </li>
+							<li class="fragment fade-up"><h3>Correct gauge for application</h3> </li>
+						</ul>
+					</section>
+					<section>
+						<h2>Cables improve sound quality</h2>
+						<h1 style="text-align: center;" class="fragment fade-up"> Mostly false </h1>
 					</section>
 				</section>
-				<!-- Myth 6 -->
+				<!-- Myth 6 
 				<section>
 					<section>
 						<img src="static/audio_myths/img/analog_summing.jpg" style="width:70%">
@@ -163,6 +249,7 @@
 					<section>
 						
 					</section>
+				-->
 				</section>
 				<section>
 					<div class="title">
