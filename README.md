@@ -9,12 +9,12 @@ This repository contains all of the resources from my series of audio tech talks
 | **Feb 5**  | [Spectral Analysis: Decomposing audio with algorithms](https://csteinmetz1.github.io/AudioTechTalks-S19/slides/spectral_analysis.html)          |
 | **Feb 19** | [Dispelling Common Audio Myths](https://csteinmetz1.github.io/AudioTechTalks-S19/slides/audio_myths.html)                                       |
 | **Mar 5**  | [AI in Audio Part I: Automated music generation and production](https://csteinmetz1.github.io/AudioTechTalks-S19/slides/ai_in_audio_part1.html) | 
-| **Mar 12** | AI in Audio Part II:  Music recommendation and understanding           |
+| **Mar 12** | [AI in Audio Part II:  Music recommendation and understanding](https://csteinmetz1.github.io/AudioTechTalks-S19/slides/ai_in_audio_part2.html)  |
 | **Mar 26** | Building Audio Plugins: A look under the hood and getting started      |
 | **Apr 9**  | Equalizers: How exactly a digital filter works and why you should care |
 | **Apr 23** | Vintage Audio Hardware: Tape delay, reverb, mics, and vinyl            |
 
-You can see full write-ups about all of these topics on [my website](https://christiansteinmetz.com), which incorporate these materials. 
+You can see full write-ups about all of these topics on [my website](https://christiansteinmetz.com), which incorporate these materials. (...coming soon...)
 
 
 ## Series Overview
