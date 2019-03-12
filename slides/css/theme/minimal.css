@@ -106,7 +106,7 @@ text-shadow: none; }
 .reveal p {
   font-size: 0.7em;
   margin: 5px 0;
-  line-height: 0.7; }
+}
 
 /* Ensure certain elements are never larger than the slide itself */
 .reveal img,
