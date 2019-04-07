@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Building Audio Plugins</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/minimal.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Styling for the slideshow element -->
+		<link rel="stylesheet" href="css/slideshow.css">
+
+		<!-- LaTeX support - Woo! -->
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<div class="title">
+						<h1 style="margin: 75px 0 0 0;">Building Audio Plugins</h1>
+						<h5 style="margin: 0 0 0 0;">A look under the hood and getting started</h5>
+						<h5 style="margin: 100px 0 0 0;">Spring 2019 - Audio Tech Talk Series</h5>
+						<h6 style="margin: 5px 0 0 0;">April 9, 2019<h6>
+					</div>
+				</section>
+
+				<!-- Outline and what is a plugin? --->
+				<section>
+					<section>
+						<h1>What is a plugin?</h1>
+					</section>
+					
+				</section>
+
+				<!-- How does an audio plugin work? --->
+				<section>
+					<section>
+						<h1>How does an plugin work></h1>
+					</section>
+					<section>
+						<h2 style="text-align: center">The Host</h2>
+						<img src="static/plugins/img/host.jpg" style="width:90%">
+					</section>
+					<section>
+						<h2 style="text-align: center">Frame Size</h2>
+						<img src="static/plugins/img/frame_size.jpg" style="width:90%">
+					</section>
+
+				</section>
+
+				<!--  Tools for building plugins --->
+				<section>
+					<section>
+						<h2 style="text-align: center">JUCE</h2>
+						<img src="static/plugins/img/juce.jpg" style="width:90%">
+					</section>
+
+				</section>
+
+				<section>
+					<div class="title">
+						<h5 style="margin: 10px 0 0 0;">Final Talk - April 23</h5>
+						<h1 style="margin: 25px 0 0 0;">Vintage Audio Hardware</h1>
+						<h5 style="margin: 0 0 0 0;">Tape delay, reverb, mics, and vinyl</h5>
+					</div>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+		<script src="js/slideshow.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
